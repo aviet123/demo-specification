@@ -24,7 +24,7 @@ public class Controller {
 
     @GetMapping("")
     public ResponseEntity<?> getAllOrg(){
-        Iterable<Member> members = memberService.findAll();
+        Iterable<Team> members = teamService.findAll();
         return new ResponseEntity<>(members, HttpStatus.OK);
     }
 

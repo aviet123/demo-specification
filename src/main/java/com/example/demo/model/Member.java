@@ -24,6 +24,6 @@ public class Member {
     private LocalDate birthDay;
     private String jobTitle;
 
-    @ManyToMany
-    private List<Team> teams;
+    @ManyToOne
+    private Team teams;
 }

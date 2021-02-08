@@ -5,6 +5,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
+import java.time.LocalDate;
 import java.util.List;
 
 @Entity
@@ -19,7 +20,9 @@ public class Team {
     private String name;
     private String leaderShip;
     private String major;
-    private boolean isDelete;
+    private LocalDate foundedDate;
+    private LocalDate endDate;
+    private String isDelete;
 
     public Team(String name, String leaderShip, String major) {
         this.name = name;
@@ -27,9 +30,4 @@ public class Team {
         this.major = major;
     }
 
-    @ManyToMany
-    @JoinTable(name = "teams_members",
-            joinColumns = @JoinColumn(name = "team_id")
-            ,inverseJoinColumns = @JoinColumn(name = "member_id"))
-    private List<Member> members;
 }

@@ -9,9 +9,11 @@ import java.time.LocalDate;
 public class MemberSpecification {
 
     public static Specification<Member> hasAddress(String address){
-        return ((root, criteriaQuery, criteriaBuilder) -> criteriaBuilder.equal(root.get(Member_.ADDRESS),address));
+        return ((root, criteriaQuery, criteriaBuilder)
+                -> criteriaBuilder.equal(root.get(Member_.ADDRESS),address));
     }
     public static Specification<Member> hasJobTitle(String job){
-        return ((root, criteriaQuery, criteriaBuilder) -> criteriaBuilder.equal(root.get(Member_.JOB_TITLE),job));
+        return ((root, criteriaQuery, criteriaBuilder)
+                -> criteriaBuilder.equal(root.get(Member_.JOB_TITLE),job));
     }
 }

@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.jpa.domain.Specification;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDate;
 import java.util.Optional;
 
 @Service
@@ -17,7 +18,13 @@ public class TeamServiceImpl implements TeamService {
 
     @Override
     public Iterable<Team> findAll() {
-        return teamRepository.findAll();
+        String currentDate = "2020-01-04";
+        LocalDate localDate = LocalDate.parse(currentDate);
+        Specification<Team> conditions = Specification.where((TeamSpecification.isCurrentTimeGreaterOrEqualsEndDate(localDate))
+                                                        .and(TeamSpecification.isCurrentTimeLessThanOrEqualsFoundedDate(localDate))
+                                                        .and(TeamSpecification.buildCombineQuerySpecification("du","name"))
+                                                        .and(TeamSpecification.buildCombineQuerySpecification("N","isDelete")));
+        return teamRepository.findAll(conditions);
     }
 
     @Override
